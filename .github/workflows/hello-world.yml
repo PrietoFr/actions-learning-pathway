@@ -1,9 +1,30 @@
 name: hello-world
+# on: push: This line defines the trigger for the workflow. 
+# The workflow will be triggered whenever there is a push event to the repository.
 on: push
-jobs: 
+# jobs: This keyword indicates the start of the job definitions section. 
+# A GitHub Actions workflow can consist of one or more jobs.
+jobs:
+# hello-world-job: This line defines the name of the job.
   hello-world-job:
+# runs-on: ubuntu-latest: This specifies the type of runner that the job will execute on. 
+# In this case, the job will run on a virtual machine with the latest version of Ubuntu Linux.
     runs-on: ubuntu-latest
-    steps: 
+# steps: This keyword indicates the start of the steps definitions section for the job. 
+# Steps are individual tasks that are executed sequentially in the job.   
+    steps:
+# - name: Check out repository code: This line defines the first step in the job. 
+# It gives the step a name, "Check out repository code."
       - name: Check out repository code
+# uses: actions/checkout@v3: This step uses a pre-defined GitHub Actions action called "checkout." 
+# The checkout action is responsible for fetching (recovering) the contents of the repository to the runner, 
+# allowing subsequent steps to access the code.
         uses: actions/checkout@v3
+# - run: echo "$(cat hello_world.txt)": This is the second step in the job. 
+# It uses the run keyword to execute a shell command. In this case, it prints the content of a file named "hello_world.txt" to the standard output. 
+# $(cat hello_world.txt) reads the content of the file and echo prints it.
+# In summary, this GitHub Actions workflow triggers on a push event to the repository. 
+# It checks out the repository's code to the runner, and then it prints the content of the "hello_world.txt" file to the console. 
+# It's important to note that for this workflow to function correctly, there should be a file named "hello_world.txt" in the repository, 
+# and its content will be displayed when this workflow is triggered by a push event.
       - run: echo "$(cat hello_world.txt)"
